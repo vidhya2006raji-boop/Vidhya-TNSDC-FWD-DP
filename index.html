@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Portfolio</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      color: #333;
+    }
+    /* Sidebar */
+    .sidebar {
+      height: 100%;
+      width: 220px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background: #222;
+      padding-top: 30px;
+      transition: transform 0.3s ease;
+    }
+    .sidebar h2 {
+      color: #fff;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .sidebar a {
+      display: block;
+      color: #ddd;
+      padding: 12px;
+      text-decoration: none;
+      text-align: center;
+      transition: background 0.2s ease;
+    }
+    .sidebar a:hover,
+    .sidebar a.active {
+      background: #0077b6;
+      color: #fff;
+    }
+
+    /* Content */
+    .content {
+      margin-left: 220px;
+      padding: 30px;
+    }
+    section {
+      padding: 40px 20px;
+      margin-bottom: 40px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #0077b6;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .profile {
+      text-align: center;
+    }
+    .profile img {
+      width: 140px;
+      border-radius: 50%;
+      margin-bottom: 15px;
+    }
+    .skills, .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 15px;
+    }
+    .card {
+      background: #eaf4ff;
+      padding: 15px;
+      border-radius: 8px;
+      text-align: center;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0px 6px 12px rgba(0,0,0,0.15);
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 400px;
+      margin: auto;
+    }
+    input, textarea {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      padding: 12px;
+      background: #0077b6;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #023e8a;
+    }
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: #222;
+      color: #fff;
+      margin-left: 220px;
+    }
+
+    /* Mobile Styles */
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+      }
+      .content {
+        margin-left: 0;
+      }
+      footer {
+        margin-left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="sidebar">
+    <h2>My Portfolio</h2>
+    <a href="#about">About</a>
+    <a href="#education">Education</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+  <div class="content">
+    <section id="about">
+      <h2>About Me</h2>
+      <div class="profile">
+        <img src="https://via.placeholder.com/140" alt="Profile">
+        <p>Hi, I'm <b>vidhya</b>, a Computer Science student who loves coding, design, and building creative projects!</p>
+      </div>
+    </section>
+
+    <section id="education">
+      <h2>Education</h2>
+      <p><b>B.Sc Computer Science</b> - ABC College (2022 - Present)</p>
+      <p><b>High School</b> - XYZ School (2020 - 2022)</p>
+    </section>
+
+    <section id="skills">
+      <h2>Skills</h2>
+      <div class="skills">
+        <div class="card">HTML & CSS</div>
+        <div class="card">JavaScript</div>
+        <div class="card">Python</div>
+        <div class="card">Java</div>
+        <div class="card">SQL</div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="projects">
+        <div class="card">
+          <h3><a href="https://github.com/username/student-portal" target="_blank">Student Portal</a></h3>
+          <p>A web-based student information system.</p>
+        </div>
+        <div class="card">
+          <h3><a href="https://github.com/username/weather-app" target="_blank">Weather App</a></h3>
+          <p>Displays real-time weather using an API.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact Me</h2>
+      <form id="contactForm">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit">Send</button>
+      </form>
+    </section>
+  </div>
+
+  <footer>
+    <p>© 2025 vidhya"| Student Portfolio</p>
+  </footer>
+
+  <script>
+    // Smooth scroll for sidebar links
+    document.querySelectorAll('.sidebar a').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        window.scrollTo({
+          top: target.offsetTop - 20,
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // Highlight active section
+    const sections = document.querySelectorAll("section");
+    const navLinks = document.querySelectorAll(".sidebar a");
+
+    window.addEventListener("scroll", () => {
+      let current = "";
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 60;
+        if (pageYOffset >= sectionTop) {
+          current = section.getAttribute("id");
+        }
+      });
+      navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === "#" + current) {
+          link.classList.add("active");
+        }
+      });
+    });
+
+    // Contact form alert
+    document.getElementById("contactForm").addEventListener("submit", function(e){
+      e.preventDefault();
+      const name = this.querySelector("input[type='text']").value;
+      alert("Thank you, " + name + "! Your message has been sent.");
+      this.reset();
+    });
+  </script>
+
+</body>
+</html>
